@@ -65,9 +65,9 @@
                 <div class="plus-minus-btn">
 
                     <p><span
-                            onclick="amountOfTicket('first-class-ticket', true); ticketPrice('first-class-price', true); subTotal()">+</span>
+                            onclick="amountOfTicket('first-class-ticket', true); ticketPrice('first-class-price', true); subTotal(); vat(); total()">+</span>
                         <span
-                            onclick="amountOfTicket('first-class-ticket', false); ticketPrice('first-class-price', false); subTotal()">-</span>
+                            onclick="amountOfTicket('first-class-ticket', false); ticketPrice('first-class-price', false); subTotal(); vat(); total()">-</span>
                     </p>
                 </div>
             </div>
@@ -80,9 +80,9 @@
                 <div class="plus-minus-btn">
                     <!-- working here  -->
                     <p><span
-                            onclick="amountOfTicket('economy-ticket', true); economyTicketPrice('economy-price', true); subTotal()">+</span>
+                            onclick="amountOfTicket('economy-ticket', true); economyTicketPrice('economy-price', true); subTotal(); vat(); total()">+</span>
                         <span
-                            onclick="amountOfTicket('economy-ticket', false); economyTicketPrice('economy-price', false); subTotal()">-</span>
+                            onclick="amountOfTicket('economy-ticket', false); economyTicketPrice('economy-price', false); subTotal(); vat(); total()">-</span>
                     </p>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p>$ <span id="vat-count">25</span></p>
                     </div>
                 </div>
                 <hr>
@@ -110,7 +110,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p>$ <span id="total">275</span></p>
                     </div>
                 </div>
             </div>
@@ -171,19 +171,43 @@
         }
 
         // Sub Total
-      function subTotal(){
-         let firstClassPrice = document.getElementById("first-class-price");
-         let firstClassPriceInteger = parseInt(firstClassPrice.innerText);
-         let economyPrice = document.getElementById("economy-price");
-         let economyPriceInteger = parseInt(economyPrice.innerText);
-         let subTotalPrice = firstClassPriceInteger + economyPriceInteger;
+        function subTotal() {
+            let firstClassPrice = document.getElementById("first-class-price");
+            let firstClassPriceInteger = parseInt(firstClassPrice.innerText);
+            let economyPrice = document.getElementById("economy-price");
+            let economyPriceInteger = parseInt(economyPrice.innerText);
+            let subTotalPrice = firstClassPriceInteger + economyPriceInteger;
 
-         let subTotalValue = document.getElementById("sub-total");                 
+            let subTotalValue = document.getElementById("sub-total");
 
-         subTotalValue.innerText = subTotalPrice;
-         return subTotalValue.innerText;
-      }
-      
+            subTotalValue.innerText = subTotalPrice;
+            return subTotalValue.innerText;
+        }
+
+        // Charge 10% VAT
+        function vat() {
+            let subTotalAmount = document.getElementById("sub-total");
+            let subTotalAmountInteger = parseInt(subTotalAmount.innerText);
+            let vatAmount = subTotalAmountInteger * 0.1;
+
+            let totalVat = document.getElementById("vat-count");
+            totalVat.innerText = vatAmount;
+            return totalVat.innerText;
+        }
+
+        // Total
+        function total() {
+            let subTotalAmount = document.getElementById("sub-total");
+            let subTotalAmountInteger = parseInt(subTotalAmount.innerText);
+            let totalVat = document.getElementById("vat-count");
+            let totalVatInteger = parseInt(totalVat.innerText);
+            let totalAmount = subTotalAmountInteger + totalVatInteger;
+
+            let totalPrice = document.getElementById("total");
+            totalPrice.innerText = totalAmount;
+            return totalPrice.innerText;
+        }
+
     </script>
 </body>
 
