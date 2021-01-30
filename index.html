@@ -26,7 +26,7 @@
         </nav>
     </header>
 
-    <!--Booking Section-->
+    <!-- Booking area  -->
     <main id="booking-area" class="main-content container">
 
         <div class="booking-content">
@@ -35,7 +35,6 @@
                 industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                 scrambled it to make a type specimen book.</p>
         </div>
-
 
         <div class="booking-form">
             <h3>Book Ocean Time</h3>
@@ -60,7 +59,8 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($<span id="first-class-price">0</span>)</label>
-                    <input id="first-class-ticket-quantity" class="inp-style inp-width" type="number" name="" value="0">
+                    <input id="first-class-ticket-quantity" class="inp-style inp-width main-area-value" type="number"
+                        name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
 
@@ -75,7 +75,8 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($<span id="economy-price">0</span>)</label>
-                    <input id="economy-ticket-quantity" class="inp-style inp-width" type="number" name="" value="0">
+                    <input id="economy-ticket-quantity" class="inp-style inp-width main-area-value" type="number"
+                        name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
                     <p><span
@@ -117,17 +118,19 @@
         </div>
     </main>
 
-    <!-- Booking Area  -->
+    <!-- Confirmation Area  -->
     <main id="confirmation-area" class="main-content container">
         <div class="booking-form">
             <h1>Congratulations! Your Booking is complete.</h1>
             <h3>You Ordered:</h3>
-            <h5><span id="booking-first-class">0</span> First Class Ticket</h5>
-            <h5><span id="booking-economy">0</span> Economic Ticket</h5>
-            <h5>Sub Total: $<span id="booking-sub-total">0</span></h5>
-            <h5>Vat: $<span id="booking-vat">0</span></h5>
-            <h5>Total: $<span id="booking-total">0</span></h5>
-            <button onclick="confirmation()" id="booking-confirmation" class="btn-style">OK</button>
+            <div>
+                <h5><span class="confirmation-area-value" id="booking-first-class">0</span> First Class Ticket</h5>
+                <h5><span class="confirmation-area-value" id="booking-economy">0</span> Economy Ticket</h5>
+                <h5>Sub Total: $<span id="booking-sub-total">0</span></h5>
+                <h5>Vat: $<span id="booking-vat">0</span></h5>
+                <h5>Total: $<span id="booking-total">0</span></h5>
+            </div>
+            <button class="btn-style">OK</button>
         </div>
     </main>
 
@@ -150,20 +153,14 @@
             return ticketAmount.value;
         }
 
-        // working here 
-        // working here 
-        // working here 
-        // working here 
-        // working here 
-        // Sum Ticket function
-        
+        // Sum Ticket function        
         function ticketPrice(priceId, amountId, ticketRate, isIncrease) {
             let sumTicketCostForFirstClass = document.getElementById(priceId);
 
             let firstClassTicketQuantity = document.getElementById(amountId);
             let integerOfFirstClassTicketQuantity = parseInt(firstClassTicketQuantity.value);
             let addedValue = integerOfFirstClassTicketQuantity;
-            
+
             if (isIncrease == true) {
                 addedValue = integerOfFirstClassTicketQuantity * ticketRate;
             }
@@ -174,22 +171,6 @@
             sumTicketCostForFirstClass.innerText = addedValue;
             return sumTicketCostForFirstClass.innerText;
         }
-
-        // Sum Ticket function Economy
-        // function economyTicketPrice(id, isIncrease) {
-        //     let ticketPrice = document.getElementById(id);
-        //     let ticketPriceCount = parseInt(ticketPrice.innerText);
-        //     let addedValue = ticketPriceCount;
-        //     if (isIncrease == true) {
-        //         addedValue = ticketPriceCount + 100;
-        //     }
-        //     if (isIncrease == false && addedValue > 0) {
-        //         addedValue = ticketPriceCount - 100;
-        //     }
-
-        //     ticketPrice.innerText = addedValue;
-        //     return ticketPrice.innerText;
-        // }
 
         // Sub Total
         function subTotal() {

@@ -126,4 +126,19 @@ nav ul li a:hover, a.active{
 /* custom css from here  */
 #confirmation-area{
     display: none;
+    text-align: center;
+    height: 100%;    
+    width: 40%;
+    margin-left: 39%;
+}
+#confirmation-area h1{
+    margin: 50px 10px;
+    color: green;
+}
+#confirmation-area h5{
+    margin: 5px 0px;
+    color: navy;
+}
+#confirmation-area button{
+    margin-top: 10%;
 }
