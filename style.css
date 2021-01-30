@@ -135,7 +135,10 @@ nav ul li a:hover, a.active{
     margin: 50px 10px;
     color: green;
 }
-#confirmation-area h5{
+#confirmation-area h2{
+    margin-bottom: 5%;
+}
+#confirmation-area h4{
     margin: 5px 0px;
     color: navy;
 }
