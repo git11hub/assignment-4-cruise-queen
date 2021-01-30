@@ -60,14 +60,14 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">First Class ($<span id="first-class-price">0</span>)</label>
-                    <input id="first-class-ticket" class="inp-style inp-width" type="number" name="" value="0">
+                    <input id="first-class-ticket-quantity" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
 
                     <p><span
-                            onclick="amountOfTicket('first-class-ticket', true); ticketPrice('first-class-price', true); subTotal(); vat(); total()">+</span>
+                            onclick="amountOfTicket('first-class-ticket-quantity', true); ticketPrice('first-class-price','first-class-ticket-quantity',150, true); subTotal(); vat(); total()">+</span>
                         <span
-                            onclick="amountOfTicket('first-class-ticket', false); ticketPrice('first-class-price', false); subTotal(); vat(); total()">-</span>
+                            onclick="amountOfTicket('first-class-ticket-quantity', false); ticketPrice('first-class-price','first-class-ticket-quantity',150, false); subTotal(); vat(); total()">-</span>
                     </p>
                 </div>
             </div>
@@ -75,13 +75,13 @@
             <div class="input-group f-class">
                 <div>
                     <label for="">Economy ($<span id="economy-price">0</span>)</label>
-                    <input id="economy-ticket" class="inp-style inp-width" type="number" name="" value="0">
+                    <input id="economy-ticket-quantity" class="inp-style inp-width" type="number" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
                     <p><span
-                            onclick="amountOfTicket('economy-ticket', true); economyTicketPrice('economy-price', true); subTotal(); vat(); total()">+</span>
+                            onclick="amountOfTicket('economy-ticket-quantity', true); ticketPrice('economy-price','economy-ticket-quantity',100, true); subTotal(); vat(); total()">+</span>
                         <span
-                            onclick="amountOfTicket('economy-ticket', false); economyTicketPrice('economy-price', false); subTotal(); vat(); total()">-</span>
+                            onclick="amountOfTicket('economy-ticket-quantity', false); ticketPrice('economy-price','economy-ticket-quantity',100, false); subTotal(); vat(); total()">-</span>
                     </p>
                 </div>
             </div>
@@ -150,37 +150,46 @@
             return ticketAmount.value;
         }
 
+        // working here 
+        // working here 
+        // working here 
+        // working here 
+        // working here 
         // Sum Ticket function
-        function ticketPrice(id, isIncrease) {
-            let ticketPrice = document.getElementById(id);
-            let ticketPriceCount = parseInt(ticketPrice.innerText);
-            let addedValue = ticketPriceCount;
+        
+        function ticketPrice(priceId, amountId, ticketRate, isIncrease) {
+            let sumTicketCostForFirstClass = document.getElementById(priceId);
+
+            let firstClassTicketQuantity = document.getElementById(amountId);
+            let integerOfFirstClassTicketQuantity = parseInt(firstClassTicketQuantity.value);
+            let addedValue = integerOfFirstClassTicketQuantity;
+            
             if (isIncrease == true) {
-                addedValue = ticketPriceCount + 150;
+                addedValue = integerOfFirstClassTicketQuantity * ticketRate;
             }
             if (isIncrease == false && addedValue > 0) {
-                addedValue = ticketPriceCount - 150;
+                addedValue = integerOfFirstClassTicketQuantity * ticketRate;
             }
 
-            ticketPrice.innerText = addedValue;
-            return ticketPrice.innerText;
+            sumTicketCostForFirstClass.innerText = addedValue;
+            return sumTicketCostForFirstClass.innerText;
         }
 
         // Sum Ticket function Economy
-        function economyTicketPrice(id, isIncrease) {
-            let ticketPrice = document.getElementById(id);
-            let ticketPriceCount = parseInt(ticketPrice.innerText);
-            let addedValue = ticketPriceCount;
-            if (isIncrease == true) {
-                addedValue = ticketPriceCount + 100;
-            }
-            if (isIncrease == false && addedValue > 0) {
-                addedValue = ticketPriceCount - 100;
-            }
+        // function economyTicketPrice(id, isIncrease) {
+        //     let ticketPrice = document.getElementById(id);
+        //     let ticketPriceCount = parseInt(ticketPrice.innerText);
+        //     let addedValue = ticketPriceCount;
+        //     if (isIncrease == true) {
+        //         addedValue = ticketPriceCount + 100;
+        //     }
+        //     if (isIncrease == false && addedValue > 0) {
+        //         addedValue = ticketPriceCount - 100;
+        //     }
 
-            ticketPrice.innerText = addedValue;
-            return ticketPrice.innerText;
-        }
+        //     ticketPrice.innerText = addedValue;
+        //     return ticketPrice.innerText;
+        // }
 
         // Sub Total
         function subTotal() {
@@ -227,11 +236,11 @@
             let confirmationArea = document.getElementById("confirmation-area");
             confirmationArea.style.display = "block";
 
-            let firstClassTicket = document.getElementById("first-class-ticket");
+            let firstClassTicket = document.getElementById("first-class-ticket-quantity");
             let firstClassConfirmation = document.getElementById("booking-first-class");
             firstClassConfirmation.innerText = firstClassTicket.value;
 
-            let economyTicket = document.getElementById("economy-ticket");
+            let economyTicket = document.getElementById("economy-ticket-quantity");
             let economyConfirmation = document.getElementById("booking-economy");
             economyConfirmation.innerText = economyTicket.value;
 
